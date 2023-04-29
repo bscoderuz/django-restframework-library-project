@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     # packages
     'rest_framework',
+    'drf_yasg',
 
     # apps
     'books',

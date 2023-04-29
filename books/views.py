@@ -62,12 +62,14 @@ class BookDeleteApiView(APIView):
 
     def delete(self, request, pk):
         try:
-            book = get_object_or_404(id=pk)
+            book = Book.objects.get(id=pk)
             book.delete()
+
             return Response({
                 "status": True,
                 "message": "Successfully deleted"
             }, status=status.HTTP_200_OK)
+
         except Exception:
             return Response({
                 "status": False,
@@ -114,8 +116,11 @@ class BookCreateApiView(APIView):
             return Response(data)
         else:
             return Response(
-                {"status": "False",
-                 "message": "Serializer is not valid"}, status=status.HTTP_400_BAD_REQUEST
+                {
+                    "status": "False",
+                    "message": "Serializer is not valid"
+                },
+                status=status.HTTP_400_BAD_REQUEST
             )
 
 
